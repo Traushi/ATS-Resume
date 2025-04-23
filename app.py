@@ -85,7 +85,33 @@ elif submit3:
         st.write(response)
     else:
         st.write("Please uplaod the resume")
+        
+        # Additional section for Course and Video Definition
+st.header("Define a Course and Upload/Link a Video")
 
+course_title = st.text_input("Course Title")
+course_description = st.text_area("Course Description")
+video_url = st.text_input("YouTube Video URL (Optional)")
+uploaded_video = st.file_uploader("Or upload a video file", type=["mp4", "mov", "avi"])
+
+submit_course = st.button("Save Course Info")
+
+if submit_course:
+    if course_title and course_description:
+        st.success("Course information saved successfully!")
+        st.subheader("Course Preview")
+        st.write(f"**Title:** {course_title}")
+        st.write(f"**Description:** {course_description}")
+        if video_url:
+            st.video(video_url)
+        elif uploaded_video:
+            st.video(uploaded_video)
+        else:
+            st.info("No video provided.")
+    else:
+        st.warning("Please fill in the course title and description.")
+
+       
 
 
    
